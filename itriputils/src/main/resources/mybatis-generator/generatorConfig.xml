@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!--location:指向数据库的驱动包-->
+    <classPathEntry
+            location="D:\mysql-5.7.19-winx64\mysql-connector-java-5.1.0-bin.jar"/>
+    <context id="my" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressDate" value="false"/>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!--创建jdbc连接-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://192.168.2.31:3306/itripdb?characterEncoding=UTF-8" userId="root"
+                        password="123456"/>
+
+        <!--生成实体类-->
+        <javaModelGenerator targetPackage="com.cwq.entity"
+                            targetProject="F:\idea\itripbackend\itripbeans\src\main\java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!--生成mapper.xml映射文件-->
+        <sqlMapGenerator targetPackage="mapper"
+                         targetProject="F:\idea\itripbackend\itripdao\src\main\resources\mapper">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!--帮助我们生成对应的mapper接口-->
+        <javaClientGenerator targetPackage="com.cwq.mapper"
+                             targetProject="F:\idea\itripbackend\itripdao\src\main\java" type="XMLMAPPER">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!--选择表-->
+        <table tableName="itrip_user" domainObjectName="itripUser"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
+    </context>
+</generatorConfiguration>
